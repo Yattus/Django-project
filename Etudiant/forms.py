@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Exercise, Cour
+from .models import User, Sujet, Cours
 # here your forms
 
 class UserForm(forms.ModelForm):
@@ -7,12 +7,12 @@ class UserForm(forms.ModelForm):
         model= User
         fields= '__all__'
 
-class   ExerciseForm(forms.ModelForm):
+class   SujetForm(forms.ModelForm):
     class Meta:
-        model= Exercise
+        model= Sujet
         fields= '__all__'
 
-class   CourForm(forms.ModelForm):
+class   CoursForm(forms.ModelForm):
     class Meta:
-        model= Cour
+        model= Cours
         fields= '__all__'

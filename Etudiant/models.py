@@ -7,30 +7,29 @@ class User(models.Model):
     date= models.DateTimeField(auto_now_add= True,
             verbose_name= "date d'inscription")
 
-    Serie= models.ForeignKey("Serie", on_delete= models.CASCADE)
+    Domaine= models.ForeignKey("Domaine", on_delete= models.CASCADE)
     
     def __str__(self):
         return self.Nom
 
 # Class EXERCISE TABLE POUR LES SUJETS
-class Exercise(models.Model):
+class Sujet(models.Model):
     Nom= models.CharField(max_length= 50)
-    serie= models.ForeignKey('Serie', on_delete= models.CASCADE)
-    Cour= models.ForeignKey('Cour', on_delete= models.CASCADE)
+    Domaine= models.ForeignKey('Domaine', on_delete= models.CASCADE)
+    cours= models.ForeignKey('Cours', on_delete= models.CASCADE)
 
     def __str__(self):
         return self.Nom
 
-class Serie(models.Model):
+class Domaine(models.Model):
     Nom= models.CharField(max_length= 50)
 
     def __str__(self):
         return self.Nom
 
-
-class Cour(models.Model):
+class Cours(models.Model):
     Nom= models.CharField(max_length= 50)
-    serie= models.ForeignKey("Serie", on_delete= models.CASCADE)
+    Domaine= models.ForeignKey("Domaine", on_delete= models.CASCADE)
 
     def __str__(self):
         return self.Nom

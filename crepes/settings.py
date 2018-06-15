@@ -110,6 +110,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Media files (Videos, Images, file PDF et other files...)
 # https://docs.djangoproject.com/en/1.7/howto/media-files/
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT= os.path.join(BASE_DIR, 'Dossiers/')
 
-MEDIA_URL= 'media/'
+MEDIA_URL= 'Dossiers/'

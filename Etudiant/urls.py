@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns= [
-    url(r'^accueil$', TemplateView.as_view(template_name= 'Etudiant/acceuil.html'), name= "accueil"),
-    url(r'^informations$', TemplateView.as_view(template_name= "Etudiant/informations.html"), name= "informations"),
-    url(r'^user$', views.user, name= 'inscription'),
+    url(r'^accueil$', views.ListDomaine.as_view(template_name= 'Etudiant/accueil.html'), name= "accueil"),
+    url(r'^informations$', views.ListDomaine.as_view(template_name= "Etudiant/informations.html"), name= "informations"),
+    url(r'^user$', views.user, name= 'connexion'),
 ]

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.text import Truncator
-from .models import User, Cour, Exercise, Serie
+from .models import User, Cours, Sujet, Domaine
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
@@ -18,6 +18,6 @@ class UserAdmin(admin.ModelAdmin):
     apercu_email.short_description= 'Email'
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Cour)
-admin.site.register(Exercise)
-admin.site.register(Serie)
+admin.site.register(Cours)
+admin.site.register(Sujet)
+admin.site.register(Domaine)

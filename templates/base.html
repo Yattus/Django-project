@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link src= "stylesheet" href="Etudiant/css/style1.css">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    {% comment %} Tête de la page {% endcomment %}
+    <header>
+    {% block header  %}
+        <h1>Titre</h1>
+        <p><h3>Slong du site ICI</h3></p>
+    {% endblock  %}
+    </header>
+
+    {% comment %} Corp de la page {% endcomment %}
+
+    <section>
+    {% block section %}
+        {% comment %} Navigatuer {% endcomment %}
+
+        {% block nav %}
+        <nav>
+            <ul>
+                <h2 class= "nav_tete">Domaine</h2>
+                {% for domaine in domaines %}
+                <ol>
+                    <a href="{% url "base" %}">{{ domaine.Nom }}</a>
+                </ol>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h2 class= "nav_tete">Domaine</h2>
+                {% for domaine in domaines %}
+                <ol><a href="{% url "base" %}">{{ domaine.nom }}</a></ol>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h2 class= "nav_tete">Domaine</h2>
+                {% for domaine in domaines %}
+                <ol><a href="{% url "base" %}">{{ domaine.nom }}</a></ol>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endblock nav %}
+
+        {% comment %} Ici sont afficher les inforamtion de de la page comme les article {% endcomment %}
+        
+        {% block article %}    
+        <article>
+            <p>
+                Il fallais y metre qlq chose ici pour tester les chose !
+                je suis la a ecrire qlq chose qui me passe par la tete et ce qui me
+                passe par la tet est that I write now, yes i'm passe in englih i think
+                with's this will be more funny or not, but w'll seen that not make late !
+
+                Il fallais y metre qlq chose ici pour tester les chose !
+                je suis la a ecrire qlq chose qui me passe par la tete et ce qui me
+                passe par la tet est that I write now, yes i'm passe in englih i think
+                with's this will be more funny or not, but w'll seen that not make late !
+
+                Il fallais y metre qlq chose ici pour tester les chose !
+                je suis la a ecrire qlq chose qui me passe par la tete et ce qui me
+                passe par la tet est that I write now, yes i'm passe in englih i think
+                with's this will be more funny or not, but w'll seen that not make late !
+
+                Il fallais y metre qlq chose ici pour tester les chose !
+                je suis la a ecrire qlq chose qui me passe par la tete et ce qui me
+                passe par la tet est that I write now, yes i'm passe in englih i think
+                with's this will be more funny or not, but w'll seen that not make late !
+
+                Il fallais y metre qlq chose ici pour tester les chose !
+                je suis la a ecrire qlq chose qui me passe par la tete et ce qui me
+                passe par la tet est that I write now, yes i'm passe in englih i think
+                with's this will be more funny or not, but w'll seen that not make late !
+                
+                Il fallais y metre qlq chose ici pour tester les chose !
+                je suis la a ecrire qlq chose qui me passe par la tete et ce qui me
+                passe par la tet est that I write now, yes i'm passe in englih i think
+                with's this will be more funny or not, but w'll seen that not make late !
+
+            </p>
+        </article>
+        {% endblock article %}
+    
+    {% endblock section %}
+    </section>
+
+    {% comment %} Pied de la page {% endcomment %}
+    <footer>
+    {% block footer %}
+    
+        <div>
+            <h2>ICI PIED DE LA PAGE </h2>
+        </div>
+    
+    {% endblock footer %}
+    </footer>
+</div>
+</body>
+</html>

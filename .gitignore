@@ -1,22 +1,13 @@
 .swp
 ex2.pdf
-templates/
-static/
-media/
-crepes/__pycache__
+crepes/__pycache__/
 manage.py
 db.sqlite3
 
-Etudiant/static/
-Etudiant/templates/
-Etudiant/media/
 Etudiant/migrations/
 Etudiant/migrations/
 Etudiant/__pycache__/
 
 
-blog/templates/
-blog/media/
-blog/static/
 blog/migrations/
 blog/__pycache__/

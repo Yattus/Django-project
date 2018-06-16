@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm
 from .models import User, Sujet, Cours, Domaine
-from django.generic.views import ListView
+from django.views.generic import ListView
 # Create your views here.
 
 def user(request):
@@ -18,30 +18,35 @@ def user(request):
 
             thanx= True
 
-            return redirect('Etudiant/inscription.html', {'thanx': thanx})
+            return redirect('Etudiant/Connexion.html', {'thanx': thanx})
     else:
         form= UserForm()
 
-    return render(request, 'Etudiant/inscription.html', {'form': form})
+    return render(request, 'Etudiant/Connexion.html', {'form': form})
 
-
-class List_Cour_et_Serie(ListView):
-    model= Sujet
-    template_name= "Base.html"
+#List_Cour_et_Serie was his name is changed now by ListDomaine
+# Vue who display list of fileds 
+class ListDomaine(ListView):
+    model= Domaine
+    context_object_name= "domaines"
+    template_name= "Etudiant/accueil.html"
     
-    def get_context_data(self, **kwargs):
-        
-        context = super(ListCour, self).get_context_data(**kwargs)
+    def get_queryset(self):
+        return Domaine.objects.all()
 
-        context['cours']= Cour.objects.all()
+# Vue who display the list of Cours
+class ListCours(ListView):
+    model= Cours
+    template_name= "Etudaint/list_cours.html"
+    context_object_name= "cours"
 
-        context['domaine']= Domaine.objects.all()
+    def get_queryset(self):
+        return Cours.objects.filter(Domaine__id= self.kwargs['id'])
 
-        return context
-
-class ListSujet((ListView):
+# Vue who display the list Subjet
+class ListSujet(ListView):
     model= Sujet
-    template_name= "base.html"
+    template_name= "Etudiant/accueil.html"
     context_object_name= "sujets"
 
     def get_queryset(self):

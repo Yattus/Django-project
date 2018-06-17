@@ -7,10 +7,13 @@ class UserForm(forms.ModelForm):
         model= User
         fields= '__all__'
 
-class   SujetForm(forms.ModelForm):
+class  SujetForm(forms.ModelForm):
+    # dat= forms.DateField()
+
     class Meta:
         model= Sujet
-        fields= '__all__'
+        # fields= '__all__'
+        fields= ('file', 'cours', 'domaine')
 
 class   CoursForm(forms.ModelForm):
     class Meta:

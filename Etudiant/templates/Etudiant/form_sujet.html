@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block nav %}   
+{% if ok %} <h1> No PROBLEME </h1> {% endif %}
+
+    <form method= "post" enctype= "multipart/form-data" action="{% url "ajouter_sujet" %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value= "Soumettre"/>
+    </form>
+{% endblock nav %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Table pour les membres inscript
 class User(models.Model):
@@ -22,7 +23,8 @@ class Sujet(models.Model):
     domaine= models.ForeignKey('Domaine', on_delete= models.CASCADE)
     cours= models.ForeignKey('Cours', on_delete= models.CASCADE)
     file= models.FileField(upload_to= "Sujets/")
-    date= models.DateField(verbose_name= "Date");
+    date_d_ajout= models.DateTimeField(auto_now_add= True, verbose_name= "Date de soumision")
+    nb_vue= models.IntegerField(default= 0, verbose_name= "Nombre de vue")
 
     class Meta:
         verbose_name= "Sujet"
@@ -30,7 +32,7 @@ class Sujet(models.Model):
         ordering= ["domaine"]
 
     def __str__(self):
-        return self.Nom
+        return "{}, Examen de {} date: {}".format(self.domaine, self.cours, self.date)
 
 class Domaine(models.Model):
     Nom= models.CharField(max_length= 50)

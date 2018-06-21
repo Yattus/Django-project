@@ -1,9 +1,10 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
+from django.urls import path, include
 from django.contrib import admin
-from django.views.generic import ListView
-from django.conf.urls.static import static
-from django.conf import settings
+from django.views.generic import TemplateView, ListView
 from Etudiant.views import ListDomaine
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns= [
     # Examples:

@@ -1,1 +1,13 @@
 {% extends "base.html" %}
+
+
+{% block article %}
+    {% for cours in cours %}
+        <a href= "{% url "list_sujet" cours.id %}">
+            <strong>{{ cours.Nom }}</strong>
+        </a>
+    {% empty %}
+        <p><strong> Pas de Cours sur cette cet Domaine pour le moment,
+            Merci ! pour votre comprehension.</strong></p>
+    {% endfor %}
+{% endblock %}

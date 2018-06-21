@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block nav %}
+
+    {% for sujet in sujets %}
+        <ul>
+            {{ sujet.domaine }}, Examen de {{ sujet.cours }}, <strong>Date: {{ sujet.date |date:"D d M Y"}}</strong>
+            <br />
+            <a href= "{{ sujet.file.url}}" >SUJET</a>
+        </ul>
+        {% empty %}
+            <strong>Pas de sujet pour le moment</strong>
+    {% endfor %}
+
+{% endblock  %}

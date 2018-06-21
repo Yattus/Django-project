@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block nav %}   
-{% if ok %} <h1> No PROBLEME </h1> {% endif %}
+    {% if ok %}
+        <h1> No PROBLEME </h1> 
+    {% else %}
+        <h1> IL YA ISSUE </h1>
+    {% endif %}
 
     <form method= "post" enctype= "multipart/form-data" action="{% url "ajouter_sujet" %}">
         {% csrf_token %}
         {{ form.as_p }}
+        <label for= 'date' >Quel année ?:</label>
+        <input type= 'date' name= 'date' id= 'date'/>
+        <br /><br />
         <input type="submit" value= "Soumettre"/>
     </form>
 {% endblock nav %}

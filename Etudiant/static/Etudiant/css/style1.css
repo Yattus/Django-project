@@ -1,42 +1,60 @@
+/* La page */ 
 body{
     margin: auto;
-    width: 70%;
-    background-color: whitesmoke;
+    width: 50%;
+    background-image: url('4.jpg');    
     /* border: 3px solid gray; */
-    border-radius: 15px;
-    box-shadow:  1px 6px 6px 1px  grey;    
+    font-family: sans-serif, Impact, Arial, Haettenschweil;    
     margin: auto;
 }
 
+/* Titre de la page */
 .Title{
     text-align: center;
     font-family: sans-serif, Impact, Arial, Haettenschweil;
-    border-bottom: 3px solid gray;
-    background-color: blanchedalmond;
+    color: aqua;
 }
 
+/* Le slogan en dessous du titre */
 #slogan{
     font-style: italic;
 }
 
+
+/* Le corps de la page */ 
 section{
     display: flex;
+    border-radius: 15px;
+    box-shadow:  1px 6px 6px 1px  grey;
     /* margin: auto; */
     /* justify-content: center; */
     /* flex-direction: column; */
 }
 
-section nav{
+.navTete{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.domaineNom{
+    text-align: center;
+    color: rgba(115, 219, 219, 0.616);
+}
+/* *************** DOMAINE CSS ********** */
+
+/* Le navigateur affichants les domaines  */
+.domaineNav{
     width: 240px;
     /* background-color: yellow; */
-    border-right: 3px solid gray;
+    border-right: 3px dotted gray;
     text-align: center;
-    /* margin-left: 1px; */
+    /* padding-left: 1px; */
     margin-top: 20px;
     /* height: 350px; */
 }
 
-section nav ul{
+/* le puce de la navigation */ 
+.domaineListPuce{
     display: flex;
     margin-right: 10px; 
     flex-direction: column;
@@ -44,32 +62,81 @@ section nav ul{
     justify-content: space-between;
 }
 
-.Ndomaine{
-    /* padding: 5px; */
+/* la liste a puce de la navigation les domaines */
+.domainePuce{
+    /* background-color: wheat; */
     color: black;
-    background-color: wheat;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     border-radius: 10px;
     box-shadow: 1px 2px 2px 1px gray;
     list-style-type: none;
-    /* border: 2px dotted gray; */
-
-    /* list-style-type: ty; */
+    margin-top: 15px;
 }
 
-.Ndomaine:hover{
-    background-color: rgb(199, 147, 51);
+.domainePuce:hover
+{
+    background-color: rgb(70, 55, 55)
 }
 
-.Na{
+
+.Navia{ 
+    color: rgb(19, 17, 17) ;
     text-decoration: none;
+  }
 
-}
-
+/* *****************  COURS CSS *********** */
 section article{
     /* background-color: aquamarine; */
-    text-align: center;
+    /* text-align: center; */
     /* text-align: justify; */
-    width: 65%;
+    width: 60%;
     margin: auto;
+}
+
+
+.coursPuce{
+    margin-right: 10px; 
+    /* flex-direction: column; */
+    list-style-type: none;
+    /* padding: 10px; */
+    text-align: center;
+    /* background-color:  rgba(240, 238, 238, 0.836); */
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px 1px gray; 
+    margin-top: 20px;    
+}
+
+.coursPuce:hover
+{
+    background-color: bisque;
+}
+/* ******************** SUJET CSS *************** */
+
+.sujetPuce{
+    margin-right: 10px; 
+    /* flex-direction: column; */
+    list-style-type: none;
+    /* padding: 10px; */
+    text-align: center;
+    /* background-color:  rgba(240, 238, 238, 0.836); */
+    margin-top: 20px;    
+}
+#sujet{
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px 1px gray; 
+}
+
+#sujet:hover{
+    background-color: aqua;
+}
+
+
+footer
+{
+    border-radius: 15px;
+    box-shadow:  0px 6px 6px 0px  grey;
+    margin-top: 120px;
+    text-align: center;  
 }

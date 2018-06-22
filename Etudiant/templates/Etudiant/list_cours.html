@@ -1,13 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static "Etudiant/css/style1.css" %}">
+{% endblock  %}
 
 {% block article %}
-    {% for cours in cours %}
-        <a href= "{% url "list_sujet" cours.id %}">
-            <strong>{{ cours.Nom }}</strong>
-        </a>
-    {% empty %}
-        <p><strong> Pas de Cours sur cette cet Domaine pour le moment,
-            Merci ! pour votre comprehension.</strong></p>
-    {% endfor %}
+    <nav class= "coursNav">
+        <ul>
+            <h2 class="navTete"><strong>Cours:</strong></h2><h5 class="domaineNom">{{ domaine.Nom }}</h5>
+            {% for cours in cours %}
+            <a href= "{% url "list_sujet" cours.id %}" class= "Navia">
+                <li class= "coursPuce">
+                    <strong>{{ cours.Nom }}</strong>
+                </li>
+            </a>
+            {% empty %}
+                <p><strong> Pas de Cours sur cette cet Domaine pour le moment,
+                    Merci ! pour votre comprehension.</strong></p>
+            {% endfor %}
+        </ul>
+    </nav>
 {% endblock %}

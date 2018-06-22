@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import UserForm, SujetForm
-from .models import User, Sujet, Cours, Domaine
-from django.views.generic import ListView, DetailView, CreateView
-from django.urls import reverse_lazy
+from .models import Sujet, Cours, Domaine
+from django.views.generic import ListView
+# DetailView, CreateView
+# from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -40,7 +41,8 @@ def ajouter_sujet(request):
         sujet.save()
         ok = True
 
-        # return render(request, "Etudiant/form_sujet.html", {'form': form, 'ok': ok})
+        # return render(request, "Etudiant/form_sujet.html",
+        # {'form': form, 'ok': ok})
         return redirect('ajouter_sujet_or')
 
     else:
@@ -67,23 +69,21 @@ class ListCours(ListView):
     model = Cours
     template_name = "Etudiant/list_cours.html"
     context_object_name = "cours"
+    # cour = Cours.objects.filter(domaine__id= .kwargs['id'])
 
     def get_queryset(self):
-        return Cours.objects.filter(domaine__id=self.kwargs['id'])
+        return Cours.objects.filter(
+            domaine__id=self.kwargs['id'])
 
     def get_context_data(self, **kwargs):
 
         context = super(ListCours, self).get_context_data(**kwargs)
 
-        context['domaines']= Domaine.objects.all()
+        context['domaine']= Domaine.objects.get(id= self.kwargs['id'])
+
+        context['domaines'] = Domaine.objects.all()
 
         return context
-
-
-def listCours(request, id):
-    cours = Cours.objets.filter(domaine__id=id)
-
-    return render(request, 'Etudiant/list_cours.html', {'cours': cours})
 
 
 # View who display the list Subjet
@@ -93,12 +93,16 @@ class ListSujet(ListView):
     context_object_name = "sujets"
 
     def get_queryset(self):
-        return Sujet.objects.filter(cours__id= self.kwargs['id']).order_by('-date')
+        return Sujet.objects.filter(
+            cours__id=self.kwargs['id']).order_by('-date')
+
 
     def get_context_data(self, **kwargs):
-        context = super(ListSujet, self).get_context_data(**kwargs)
+
+        context= super(ListSujet, self).get_context_data(**kwargs)
 
         context['domaines']= Domaine.objects.all()
 
-        return context
+        context['cour']= Cours.objects.get(id= self.kwargs['id'])
 
+        return context

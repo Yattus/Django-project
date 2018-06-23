@@ -1,6 +1,7 @@
 .swp
 ex2.pdf
 crepes/__pycache__/
+crepes/settings.py
 manage.py
 db.sqlite3
 

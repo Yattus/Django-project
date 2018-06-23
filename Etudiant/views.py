@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from .forms import UserForm, SujetForm
 from .models import Sujet, Cours, Domaine
 from django.views.generic import ListView
@@ -32,12 +32,12 @@ def ajouter_sujet(request):
     # for a message to thanx add of subjet
     ok = False
 
-    form = SujetForm(request.POST or None, request.FILES)
+    form = get_object_or_404(SujetForm(request.POST or None, request.FILES))
 
     if form.is_valid():
         sujet = Sujet()
         sujet = form.save(commit=False)
-        sujet.date = request.POST.get('date',)
+        sujet.date = request.POST.get('date')
         sujet.save()
         ok = True
 
@@ -46,7 +46,7 @@ def ajouter_sujet(request):
         return redirect('ajouter_sujet_or')
 
     else:
-        form = SujetForm()
+        form = get_object_or_404(SujetForm)
 
     return render(request,
                   'Etudiant/form_sujet.html',
@@ -61,7 +61,7 @@ class ListDomaine(ListView):
     template_name = "Etudiant/accueil.html"
 
     def get_queryset(self):
-        return Domaine.objects.all()
+        return get_list_or_404(Domaine.objects.all())
 
 
 # View who display the list of Cours
@@ -72,16 +72,17 @@ class ListCours(ListView):
     # cour = Cours.objects.filter(domaine__id= .kwargs['id'])
 
     def get_queryset(self):
-        return Cours.objects.filter(
-            domaine__id=self.kwargs['id'])
+        return get_list_or_404(Cours.objects.filter(
+            domaine__id=self.kwargs['id']))
 
     def get_context_data(self, **kwargs):
 
         context = super(ListCours, self).get_context_data(**kwargs)
 
-        context['domaine']= Domaine.objects.get(id= self.kwargs['id'])
+        context['domaine'] = get_object_or_404(Domaine,
+                                               id=self.kwargs['id'])
 
-        context['domaines'] = Domaine.objects.all()
+        context['domaines'] = get_list_or_404(Domaine.objects.all())
 
         return context
 
@@ -93,16 +94,13 @@ class ListSujet(ListView):
     context_object_name = "sujets"
 
     def get_queryset(self):
-        return Sujet.objects.filter(
-            cours__id=self.kwargs['id']).order_by('-date')
-
+        return get_list_or_404(Sujet.objects.filter(
+            cours__id=self.kwargs['id']).order_by('-date'))
 
     def get_context_data(self, **kwargs):
 
         context= super(ListSujet, self).get_context_data(**kwargs)
 
-        context['domaines']= Domaine.objects.all()
-
-        context['cour']= Cours.objects.get(id= self.kwargs['id'])
+        context['domaines']= get_list_or_404(Domaine.objects.all())
 
         return context

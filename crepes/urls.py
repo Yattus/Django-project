@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from django.urls import path, include
+from django.urls import include
 from django.contrib import admin
-from django.views.generic import TemplateView, ListView
-from Etudiant.views import ListDomaine
+from django.views.generic import TemplateView
+# from Etudiant.views import ListDomaine
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,7 +12,7 @@ urlpatterns= [
     # url(r'^$', 'crepes.views.home', name='home'),
     url(r'^blog/', include('blog.urls')),
     url(r'^Etudiant/', include('Etudiant.urls')),
-    url(r'^$', ListDomaine.as_view(template_name= "base.html"), name="base"),
+    url(r'^$', TemplateView.as_view(template_name= "base.html"), name="base"),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

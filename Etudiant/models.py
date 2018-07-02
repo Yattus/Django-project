@@ -1,6 +1,9 @@
 from django.db import models
 # from django.utils import timezone
 # Table pour les membres inscript
+
+
+# TABALE DES UTILISATEUR
 class User(models.Model):
     """User"""
     Nom = models.CharField(max_length=50)
@@ -42,7 +45,7 @@ class Sujet(models.Model):
         """__str__"""
         return "{}, Examen de {} date: {}".format(self.domaine, self.cours, self.date)
 
-
+# TABLE des domaines
 class Domaine(models.Model):
     """Domaine"""
     Nom= models.CharField(max_length= 50)
@@ -59,6 +62,7 @@ class Domaine(models.Model):
         return self.Nom
 
 
+# TABLE DES COURS
 class Cours(models.Model):
     """Cours"""
     Nom= models.CharField(max_length= 50)

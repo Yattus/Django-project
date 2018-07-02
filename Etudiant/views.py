@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from .forms import UserForm, SujetForm
 from .models import Sujet, Cours, Domaine
 from django.views.generic import ListView
@@ -21,21 +21,24 @@ def user(request):
 
             thanx = True
 
-            return redirect('Etudiant/Connexion.html', {'thanx': thanx})
+            return redirect('Etudiant/Connexion.html',
+                            {'thanx': thanx})
     else:
         form = UserForm()
 
-    return render(request, 'Etudiant/Connexion.html', {'form': form})
+    return render(request,
+                  'Etudiant/Connexion.html',
+                  {'form': form})
 
 
 def ajouter_sujet(request):
     # for a message to thanx add of subjet
     ok = False
 
-    form = get_object_or_404(SujetForm(request.POST or None, request.FILES))
+    form = SujetForm(request.POST or None, request.FILES)
 
     if form.is_valid():
-        sujet = Sujet()
+        sujet = get_object_or_404(Sujet)
         sujet = form.save(commit=False)
         sujet.date = request.POST.get('date')
         sujet.save()
@@ -46,22 +49,11 @@ def ajouter_sujet(request):
         return redirect('ajouter_sujet_or')
 
     else:
-        form = get_object_or_404(SujetForm)
+        form = SujetForm()
 
     return render(request,
                   'Etudiant/form_sujet.html',
                   {'form': form, 'ok': ok})
-
-
-# List_Cour_et_Serie was his name is changed now by ListDomaine
-# View who display list of fileds
-class ListDomaine(ListView):
-    model = Domaine
-    context_object_name = "domaines"
-    template_name = "Etudiant/accueil.html"
-
-    def get_queryset(self):
-        return get_list_or_404(Domaine.objects.all())
 
 
 # View who display the list of Cours
@@ -69,20 +61,18 @@ class ListCours(ListView):
     model = Cours
     template_name = "Etudiant/list_cours.html"
     context_object_name = "cours"
-    # cour = Cours.objects.filter(domaine__id= .kwargs['id'])
 
     def get_queryset(self):
-        return get_list_or_404(Cours.objects.filter(
-            domaine__id=self.kwargs['id']))
+        return Cours.objects.filter(domaine__id=self.kwargs['id'],
+                                    domaine__slug=self.kwargs['slug'])
 
     def get_context_data(self, **kwargs):
 
         context = super(ListCours, self).get_context_data(**kwargs)
 
-        context['domaine'] = get_object_or_404(Domaine,
-                                               id=self.kwargs['id'])
-
-        context['domaines'] = get_list_or_404(Domaine.objects.all())
+        context['domainechoisie'] = Domaine.objects.get(
+                                            id=self.kwargs['id'],
+                                            slug=self.kwargs['slug'])
 
         return context
 
@@ -94,13 +84,19 @@ class ListSujet(ListView):
     context_object_name = "sujets"
 
     def get_queryset(self):
-        return get_list_or_404(Sujet.objects.filter(
-            cours__id=self.kwargs['id']).order_by('-date'))
+        return Sujet.objects.filter(cours__id=self.kwargs['id'],
+                    cours__slug=self.kwargs['slug']).order_by('-date')
 
     def get_context_data(self, **kwargs):
 
-        context= super(ListSujet, self).get_context_data(**kwargs)
+        context = super(ListSujet, self).get_context_data(**kwargs)
 
-        context['domaines']= get_list_or_404(Domaine.objects.all())
+        context['cours'] = Cours.objects.filter(
+                                    domaine__Nom=self.kwargs['Nom'])
+
+        context['domainechoisie'] = Domaine.objects.get(Nom=self.kwargs['Nom'])
+
+        context['courchoisie'] = Cours.objects.get(id=self.kwargs['id'],
+                                                   slug=self.kwargs['slug'])
 
         return context

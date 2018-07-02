@@ -3,6 +3,7 @@ from django.utils.text import Truncator
 from .models import User, Cours, Sujet, Domaine
 # Register your models here.
 
+
 class UserAdmin(admin.ModelAdmin):
     list_display= ('Nom', 'apercu_email')
     list_filter= ('Nom',)
@@ -17,7 +18,8 @@ class UserAdmin(admin.ModelAdmin):
 
     apercu_email.short_description= 'Email'
 
+
 admin.site.register(User, UserAdmin)
-admin.site.register(Cours)
-admin.site.register(Sujet)
-admin.site.register(Domaine)
+# admin.site.register(Cours)
+# admin.site.register(Sujet)
+# admin.site.register(Domaine)

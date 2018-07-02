@@ -1,7 +1,7 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    {% load static %} 
+    {% load static Etudiant_extras %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,7 +19,7 @@
         {% block header %}
             <h1>Etudiant.ml</h1>
             <p>
-                <h3 id= "slogan">Le meilleur moment n'arrive jamais</h3>
+                <h3 id= "slogan">{{ "Le meilleur moment n'arrive jamais!"|citation}}</h3>
             </p>
         {% endblock %}
         </header>
@@ -27,55 +27,52 @@
 
         {% comment %} Corp de la page {% endcomment %}
 
-        <section>
-        {% block section %} {% comment %} Navigatuer {% endcomment %} {% block nav %}
-            <nav class= "domaineNav">
+       <section>
+       {% block section %} {% comment %} Navigatuer {% endcomment %}
+            <nav class= "dNav">
                 <ul class="domaineListPuce">
                     <h2 class="navTete"><strong>DOMAINES</strong></h2>
                     {% for domaine in domaines %}
-                    <a href="{% url "list_cours" domaine.id %}" class="Navia">
+                    <a href="{% url "list_cours" id=domaine.id slug=domaine.slug %}"
+                        class="Navia">
                         <li class="domainePuce">
-                            {{ domaine.Nom }}
+                            {% if domaine.Nom == domainechoisie %}
+                                <span class= 'domainechoisie'><strong>{{ domaine.Nom }}</strong></span>
+                            {% else %}
+                                {{ domaine.Nom }}
+                            {% endif %}
                         </li>
                     </a>
+                    {% empty %}
+                        <em>Pas de domaine Pour le moment</em>
                     {% endfor %}
                 </ul>
             </nav>
-            {% endblock nav %} {% comment %} Ici sont afficher les inforamtion de de la page comme les article {% endcomment %}
-            <article>
-            {% block article %}
-                <p>
-                    Il fallais y metre qlq chose ici pour tester les chose ! je suis la a ecrire qlq chose qui me passe par la tete et ce qui me passe par la tet est that I write now, yes i'm passe in englih i think with's this will be more funny or not, but w'll seen that
-                    not make late ! Il fallais y metre qlq chose ici pour tester les chose ! je suis la a ecrire qlq chose qui me passe par la tete et ce qui me passe par la tet est that I write now, yes i'm passe in englih i think with's this will be
-                    more funny or not, but w'll seen that not make late ! Il fallais y metre qlq chose ici pour tester les chose ! je suis la a ecrire qlq chose qui me passe par la tete et ce qui me passe par la tet est that I write now, yes i'm passe
-                    in englih i think with's this will be more funny or not, but w'll seen that not make late ! Il fallais y metre qlq chose ici pour tester les chose ! je suis la a ecrire qlq chose qui me passe par la tete et ce qui me passe par la tet
-                    est that I write now, yes i'm passe in englih i think with's this will be more funny or not, but w'll seen that not make late ! Il fallais y metre qlq chose ici pour tester les chose ! je suis la a ecrire qlq chose qui me passe par
-                    la tete et ce qui me passe par la tet est that I write now, yes i'm passe in englih i think with's this will be more funny or not, but w'll seen that not make late ! Il fallais y metre qlq chose ici pour tester les chose ! je suis
-                    la a ecrire qlq chose qui me passe par la tete et ce qui me passe par la tet est that I write now, yes i'm passe in englih i think with's this will be more funny or not, but w'll seen that not make late !
+       {% endblock %}
+       </section>
 
-                </p>
-            {% endblock article %} 
-            </article>
-        {% endblock section %}    
-        </section>
-        
+        <br />
+        <br />
+
+        <div id= "button">
+            <div>Pour plus d'inforamtion</div>
+            <div>Connexion</div>
+        </div>
+
         <footer>
-            <nav >    
+            <nav >
             {% block nav2 %}
+                <h2 class="nav_tete">Divertissements</h2>
                 <ul>
-                    <h2 class="nav_tete">Divertissements</h2>
                     <p>
                         N'hesité pas de vous relaxé apres un dure job !
                         Voici certaines lien don't nous croyons ferons votre
-                        bonheur ! 
+                        bonheur !
                     </p>
-                    {% for domaine in domaines %}
-                    <li><a href="{% url "list_cours" domaine.id %}">{{ domaine.Nom }}</a></ol>
-                    {% endfor %}
                 </ul>
             {% endblock  %}
             </nav>
-     
+
             {% comment %} Pied de la page {% endcomment %}
             {% block footer %}
 
@@ -84,7 +81,7 @@
             </div>
 
             {% endblock footer %}
-        </footer>    
+        </footer>
     </div>
 {% endblock %}
 </body>

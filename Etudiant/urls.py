@@ -1,7 +1,8 @@
+# from django.contrib.signals import pre_delete
+# from .models import Sujet
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from . import views
-
 
 urlpatterns = [
     # url(r'^accueil/', views.ListDomaine.as_view(
@@ -24,10 +25,10 @@ urlpatterns = [
         name='list_sujet'
         ),
 
-    url(r'^ajouter_sujet_or.html/',
+    url(r'^ajouter_encors_un_sujet_ou_non.html/',
         TemplateView.as_view(
             template_name='Etudiant/ajouter_sujet_or.html'),
-        name='ajouter_sujet_or'
+        name='ajouter_encors_un_sujet_ou_non'
         ),
 
     url(r'^list_cours/(?P<id>\d+)-(?P<slug>.+)',
@@ -35,9 +36,13 @@ urlpatterns = [
         name='list_cours'
         ),
 
-    url(r'^ajouter_sujet/', views.ajouter_sujet,
+    url(r'^ajouter_sujet/', views.AjouterSujet.as_view(),
         name="ajouter_sujet"
         ),
 
-    url(r'^user$', views.user, name='connexion'),
+    url(r'^connexion$', views.connexion, name='connexion'),
+
+    url(r'^inscription$', views.inscription, name="inscription"),
+    # url(r'^inscription$', views.Inscription.as_view(), name="inscription"),
+
 ]

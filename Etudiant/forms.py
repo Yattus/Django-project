@@ -1,22 +1,37 @@
 from django import forms
-from .models import User, Sujet, Cours
+from .models import Sujet, Cours
+# from django.contrib.auth.models import User
 # here your forms
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model= User
-        fields= '__all__'
 
-class  SujetForm(forms.ModelForm):
+class InscriptionForm(forms.Form):
+    pseaudo = forms.CharField(max_length=100)
+    email = forms.EmailField(label="Votre mail")
+    password = forms.CharField(label="Mot de passe",
+                               widget=forms.PasswordInput)
+
+#     class Meta:
+#         model = User
+#         fields = ('pseaudo', 'email', 'Password')
+
+
+class ConnexionForm(forms.Form):
+    pseaudo = forms.CharField(max_length=100)
+    password = forms.CharField(label="Mot de passe",
+                               widget=forms.PasswordInput)
+
+
+class SujetForm(forms.ModelForm):
     # dat= forms.DateField()
 
     class Meta:
 
-        model= Sujet
-        # fields= '__all__'
-        fields= ('file', 'cours', 'domaine')
+        model = Sujet
+        # fields = '__all__'
+        fields = ('fichier', 'cours', 'domaine')
 
-class   CoursForm(forms.ModelForm):
+
+class CoursForm(forms.ModelForm):
 
     class Meta:
         model= Cours

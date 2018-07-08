@@ -1,1 +1,16 @@
 {% extends "base.html" %}
+
+{%block section%}
+
+{% if erros %} Mauvais mot de pass ou name d'utilisateur {% endif %}
+
+{% if user.authenticated %}
+    Vous etes Conneté {{ user.username }}
+{% else %}
+<form method="post" action="{% url "connexion" %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Se connecté">
+    </form>
+{% endif %}
+{% endblock %}

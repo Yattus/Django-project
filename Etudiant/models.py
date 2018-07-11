@@ -8,16 +8,21 @@ from django.dispatch import receiver
 
 
 # Une fonction pour renommer les photo de profil
-def renommage(instance):
-    return "Photo_Profil/{}_{}_{}".format(instance.id,
-                                          instance.user.first_name,
-                                          instance.user.last_name)
+def renommagePhoto(instance, fichier):
+    return "Photo_Profil/{}_{}_{}".format(instance.id, 
+                             instance.user.username, fichier)
+
+def renommageSujet(instance, fichier):
+    return "Sujets/{0}/{1}/{2}_{3}".format(instance.domaine.Nom,
+                                    instance.cours.Nom,
+                                    instance.date, fichier)
 
 
 # TABALE DES UTILISATEUR
 class Profil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.FileField(null=True, blank=True, upload_to=renommage,
+    photo = models.FileField(null=True, blank=True,
+                             upload_to=renommagePhoto,
                              verbose_name="Photo de profile")
 
     class Meta:
@@ -33,10 +38,12 @@ class Sujet(models.Model):
     """Sujet"""
     domaine = models.ForeignKey('Domaine', on_delete=models.CASCADE)
     cours = models.ForeignKey('Cours', on_delete=models.CASCADE)
-    fichier = models.FileField(upload_to="Sujets/")
+    fichier = models.FileField(upload_to=renommageSujet)
+
     date = models.DateField(auto_now_add=False, verbose_name="Quel année ?:")
     date_d_ajout = models.DateTimeField(auto_now_add=True,
                                         verbose_name="Date de soumision")
+
     nb_vue = models.IntegerField(default=0, verbose_name="Nombre de vue")
     slug = models.SlugField(max_length=100)
 

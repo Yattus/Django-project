@@ -12,3 +12,19 @@ Etudiant/__pycache__/
 
 blog/migrations/
 blog/__pycache__/
+
+Dossiers/
+Etudiant/static/Etudiant/css/1.jpg
+Etudiant/static/Etudiant/img/
+Etudiant/static/Etudiant/js/ObjCour.js
+Etudiant/static/Etudiant/js/cours.js
+"Etudiant/static/Etudiant/js/h\303\251ritage_ou_delegation.js"
+Etudiant/templates/Etudiant/cour.html
+Etudiant/templates/Etudiant/deconnexion.html
+Examen 1_GIF-1001_H15.pdf
+templates/__MACOSX/
+templates/activite_1.zip
+templates/activite_1/
+templates/base1.html
+templates/css/
+templates/test.html

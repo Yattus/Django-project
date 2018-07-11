@@ -1,58 +1,68 @@
 /* La page */
 body{
-    width: 100%;
-    background-image: url('2.jpg');
-    /* border: 3px solid gray; */
-    /* font-family: sans-serif, Impact, Arial, Haettenschweil; */
+    background-image: url('../img/5.jpg');
     margin: auto;
-    /* height: 1500px; */
-	/* min-height: 100%; */
+    height: 700px;
+    width: 90%;
 }
 
+ /* bloh de la page */
 #page{
-    /* width: 65%; */
-    position: absolute;
-    top: 0px;
-    bottom: 5px;
-    left: 15%;
-    right: 15%;
-    /* margin-top: 0%; */
-    width: 70%;
-    /* background-image: url('4.jpg'); */
-	background-color: wheat;
-    /* border: 3px solid gray; */
-    font-family: sans-serif, Impact, Arial, Haettenschweil;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif, Impact, Arial;
     margin: auto;
-    height: 100%;
-	/* min-height: 100%; */
+    height: 700px;
 }
 
-/* Titre de la page */
-.Title{
+/* l'entête de la page */
+header{
+    display: flex;
+    flex-direction: column;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif, Impact, Arial;
+    background-color: gray;
+    height: 70px;
+    width: 600px;
+    border-radius: 0px 0px 30px 30px;
     text-align: center;
-    font-family: sans-serif, Impact, Arial, Haettenschweil;
-    color: aqua;
 }
 
-/* Le slogan en dessous du titre */
+/* Le titre de la page: ETUDIANT.ML */
+.Title{
+    color: magenta;
+    margin-top: 4px;
+    align-self: top;
+    padding-top: 0;
+}
+
+/* Le slogan en dessous du tire */
 #slogan{
+    color: bisque;
+    margin-top: -15px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif, Impact, Arial;
+    font-weight: normal;
     font-style: italic;
 }
 
-
-/* Le corps de la page */
-section{
+/* Le corps ou la hanche de la page */
+section {
 	width: 95%;
     display: flex;
-    border-radius: 15px;
-    box-shadow:  1px 6px 6px 1px  grey;
-    /* margin: auto; */
-    /* justify-content: center; */
-    /* flex-direction: column; */
+    /* display: block; */
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+    margin: auto;
 }
 
 .navTete{
+    font-family: 'Open Sans', sans-serif, Impact, Arial;
     text-align: center;
+    color: rgb(209, 169, 120);
     text-decoration: underline;
 }
 
@@ -63,40 +73,34 @@ section{
 /* *************** DOMAINE CSS ********** */
 
 /* Le navigateur affichants les domaines  */
-.domaineNav{
+/* .domaineNav{
     width: 40%;
-    /* background-color: yellow; */
-    border-right: 3px dotted gray;
     text-align: center;
-    /* padding-left: 1px; */
-    margin-top: 20px;
-    /* margin: auto; */
-    /* height: 350px; */
-}
-
-.dNav{
-    width: 60%;
-    /* background-color: yellow; */
+} */
+/* .coursNav doit etre au niveau d BETA (ß) cours CSS */
+.coursNav, .domaineNav, .dNav{
     text-align: center;
-    /* padding-left: 1px; */
-    margin-top: 20px;
+    width: 40%;
     margin: auto;
-    /* height: 350px; */
+    background-color: #eee;
+    border-radius: 15px;
+    box-shadow:  1px 6px 6px 1px  #eee;
 }
+/* .dNav{
+    width: 60%;
+    text-align: center;
+} */
 
 /* le puce de la navigation */
 .domaineListPuce{
     display: flex;
-    margin-right: 10px;
+    margin-right: 35px;
     flex-direction: column;
-    /* width: 100%; */
     justify-content: space-between;
-	/* margin: auto; */
 }
 
 /* la liste a puce de la navigation les domaines */
 .domainePuce{
-    /* background-color: wheat; */
     color: black;
     margin-bottom: 5px;
     border-radius: 10px;
@@ -107,7 +111,7 @@ section{
 
 .domainePuce:hover
 {
-    background-color: rgb(70, 55, 55)
+    background-color: magenta;
 }
 
 
@@ -117,25 +121,12 @@ section{
   }
 
 /* *****************  COURS CSS *********** */
-section article{
-    /* background-color: aquamarine; */
-    /* text-align: center; */
-    /* text-align: justify; */
-    width: 60%;
-    margin: auto;
-}
-
-.coursNav{
-    border-right: 3px dotted gray;
-}
+/* =========> Ici (ß) */
 
 .coursPuce{
-    margin-right: 10px;
-    /* flex-direction: column; */
+    margin-right: 35px;
     list-style-type: none;
-    /* padding: 10px; */
     text-align: center;
-    /* background-color:  rgba(240, 238, 238, 0.836); */
     margin-bottom: 5px;
     border-radius: 10px;
     box-shadow: 1px 2px 2px 1px gray;
@@ -144,17 +135,24 @@ section article{
 
 .coursPuce:hover
 {
-    background-color: bisque;
+    background-color: magenta;
 }
 /* ******************** SUJET CSS *************** */
 
+.sujetNav, .coursNav2, .domaineNav2{
+    text-align: center;
+    margin-left: 3.33%;
+    width: 30%;
+    /* height: 233.33px; */
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow:  6px 6px 6px 1px  #eee;
+}
+
 .sujetPuce{
     margin-right: 10px;
-    /* flex-direction: column; */
     list-style-type: none;
-    /* padding: 10px; */
     text-align: center;
-    /* background-color:  rgba(240, 238, 238, 0.836); */
     margin-top: 20px;
 }
 #sujet{
@@ -164,14 +162,158 @@ section article{
 }
 
 #sujet:hover{
-    background-color: aqua;
+    background-color: rgb(106, 241, 241);
 }
 
+/* ================= SIDE UTILISATEUR ===============  */
 
-footer
-{
+#utilisateur{
+    height: 30px;
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    justify-content: space-around;
+}
+
+#infos{
+    color: rgb(87, 86, 86);
+    font-weight: normal;
+    width: 200px;
+    background-color: bisque;
     border-radius: 15px;
-    box-shadow:  0px 6px 6px 0px  grey;
-    margin-top: 120px;
+    box-shadow: 1px 2px 2px 1px bisque;
+    padding-top: 6px;
+    padding-top: 6px;
+    text-align: center;
+    text-decoration: none;
+}
+#infos:hover{
+    background-color: rgb(253, 158, 42);
+}
+
+#connexion{
+    color:rgb(75, 73, 73);;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif, Impact, Arial;
+    font-weight: bold;
+    border-radius: 15px;
+    padding-top: 6px;
+    width: 100px;
+    /* height: 30px; */
+    margin-left: 70px;
+    text-align: center;
+    text-decoration: none;
+    /* margin: auto; */
+    background-color: bisque;
+    box-shadow: 1px 2px 2px 1px bisque;
+    border-radius: 15px;
+    /* align-self: flex-end; */
+}
+
+#connexion:hover{
+    background-color: rgb(253, 158, 42);
+}
+
+#bar{
+    margin-top: -33px;
+    font-size: 1.2em;
+    color: rgb(253, 158, 42);
+    height: 50px;
+}
+
+#inscription{
+    color: rgb(75, 73, 73);
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif, Impact, Arial;
+    border-radius: 15px;
+    box-shadow: 1px 2px 2px 1px bisque;
+    width: 100px;
+    /* height: 30px; */
+    padding-top: 6px;
+    text-align: center;
+    text-decoration: none;
+    background-color: bisque;
+    /* align-self: flex-end; */
+}
+
+#inscription:hover{
+    background-color: rgb(253, 158, 42);
+}
+
+footer{
+    font-family: Arvo, Arial;
+    background-color: gray;
+    height: 70px;
+    width: 700px;
+    /* margin: auto; */
+    border-radius: 30px 30px 0px 0px;
+    text-align: center;
+}
+
+/* ============== Side FORMULAIRE ============ */
+
+
+form{
+    width: 380px;
+    /* height: 130px; */
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow:  6px 6px 6px 1px  #eee;
+    margin: auto;
+}
+form label {
+    display: block;
+	float: left;
+	font-weight: lighter;
+	width: 150px;
+    text-align: justify;
+    font-family: Arvo, Arial;
+    margin: 15px 0px 0px 5px;
+    
+}
+
+form input, form select, form textarea {
+    border: 1px solid #d9d9d9;
+    color: #343434;
+    border-radius: 10px;
+	float: left;
+	margin: 8px 10px 0px 10px;
+	padding: 5px;
+}
+
+form p { clear: both; }
+
+/* .clear { clear:both;} */
+
+input[type="submit"] {
+    background-color: #5c5eee;
+    color: #FFF;
+    font-family: Verdana;
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    border: 0px none transparent;
+    text-decoration: none;
+    border-radius: 2px;
+    margin: 20px 0px 0px 120px;
+    display: inline-block;
+}
+
+input[type="submit"]:hover {
+    background-color: #161ae0;
+}
+
+form div {
+    margin: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    color: grey;
+}
+
+#erreur{
+    color: rgb(209, 79, 79);
+    border-radius: 20px; 
+    background-color: rgba(129, 107, 107, 0.404);
+    margin: 20px ;
     text-align: center;
 }

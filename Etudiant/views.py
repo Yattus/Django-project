@@ -1,10 +1,12 @@
 from django.shortcuts import HttpResponseRedirect, redirect, render
 from .forms import InscriptionForm, SujetForm, ConnexionForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators  import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate, login, logout
 from .models import Sujet, Cours, Domaine
-from django.views.generic import ListView, CreateView, TemplateView
-from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy, reverse
 # Create your views here.
 
 
@@ -48,9 +50,15 @@ def connexion(request):
 
     return render(request, "Etudiant/connexion.html", locals())
 
+@login_required
+def deconnexion(request):
+    logout(request)
+    return redirect(reverse(connexion))
+
 
 # Generic View who display the formulary to add a subjet
-class AjouterSujet(CreateView):
+class AjouterSujet(LoginRequiredMixin, CreateView):
+    # login_url = 'Etudiant/connexion'
     model = Sujet
     template_name = "Etudiant/form_sujet.html"
     form_class = SujetForm
@@ -86,7 +94,8 @@ class ListCours(ListView):
     # Redefine queryset to precise the cours display
     def get_queryset(self):
         return Cours.objects.filter(domaine__id=self.kwargs['id'],
-                                    domaine__slug=self.kwargs['slug'])
+                                    domaine__slug=self.kwargs['slug']
+                                    ).order_by('Nom')
 
     # Redefine context to display in another color the domaine selected
     def get_context_data(self, **kwargs):
@@ -109,7 +118,8 @@ class ListSujet(ListView):
     # Redefine queryset to precise the subjet display
     def get_queryset(self):
         return Sujet.objects.filter(cours__id=self.kwargs['id'],
-                    cours__slug=self.kwargs['slug']).order_by('-date')
+                                    cours__slug=self.kwargs['slug']
+                                    ).order_by('-date')
 
     # Redefine context to display in another color the domaine
     # and cours selected

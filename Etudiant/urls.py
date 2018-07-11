@@ -3,6 +3,7 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from . import views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     # url(r'^accueil/', views.ListDomaine.as_view(
@@ -36,13 +37,15 @@ urlpatterns = [
         name='list_cours'
         ),
 
-    url(r'^ajouter_sujet/', views.AjouterSujet.as_view(),
+    url(r'^ajouter_sujet/', login_required(views.AjouterSujet.as_view(),
+        login_url='/Etudiant/connexion/'),
         name="ajouter_sujet"
         ),
 
-    url(r'^connexion$', views.connexion, name='connexion'),
+    url(r'^connexion/$', views.connexion, name='connexion'),
+    
+    url(r'^deconnexion/$', views.deconnexion, name='deconnexion'),
 
-    url(r'^inscription$', views.inscription, name="inscription"),
+    url(r'^inscription/$', views.inscription, name="inscription"),
     # url(r'^inscription$', views.Inscription.as_view(), name="inscription"),
-
 ]

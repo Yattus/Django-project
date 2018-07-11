@@ -2,9 +2,9 @@
 
 {% block section %}
 
-    <nav class= "domaineNav">
+    <nav class= "domaineNav2">
         <ul class="domaineListPuce">
-            <h2 class="navTete"><strong>DOMAINES</strong></h2>
+            <h2 class="navTete"><strong>Domaines</strong></h2>
             {% for domaine in domaines %}
             <a href="{% url "list_cours" id=domaine.id slug=domaine.slug %}"
                 class="Navia">
@@ -20,9 +20,9 @@
         </ul>
     </nav>
 
-     <nav class= "coursNav">
+    <nav class= "coursNav2">
         <ul>
-            <h2 class="navTete"><strong>Cours:</strong></h2><h5 class="domaineNom">{{ domaine.Nom }}</h5>
+            <h2 class="navTete"><strong>Cours</strong></h2><h5 class="domaineNom">{{ domaine.Nom }}</h5>
             {% for cour in cours %}
             <a href= "{% url "list_sujet" id=cour.id slug=cour.slug Nom=cour.domaine.Nom %}"
                 class= "Navia">

@@ -15,12 +15,15 @@
 {% block body %}
     <div id= "page">
         {% comment %} Tête de la page {% endcomment %}
-        <header >
+        <header class= "Title" >
         {% block header %}
-        <h1 class= "Title">Etudiant.ml</h1>
-        <h4 id= "slogan">{{ "Le meilleur moment n'arrive jamais!"|citation}}</h4>
+            <h1>Etudiant.ml</h1>
+            <p>
+                <h3 id= "slogan">{{ "Le meilleur moment n'arrive jamais!"|citation}}</h3>
+            </p>
         {% endblock %}
         </header>
+        <br />
 
         {% comment %} Corp de la page {% endcomment %}
 
@@ -49,15 +52,8 @@
         </section>
         
         <div id="utilisateur">
-            <a href="{% url "base" %}" id='infos'>Pour plus d'inforamtion</a><br/>
-            {% if user.is_authenticated %}
-                <a href="{% url "base" %}" id='connecté'>Connecté</a>
-                {{ user.username }} {{ user.Profil.photo.url }}
-            {% else %}
-                <a href="{% url "connexion" %}" id='connexion'>Se connecté</a>
-                <span id='bar'><h1>/</h1></span>
-                <a href="{% url "inscription" %}" id='inscription'>S'inscrire</a>
-            {% endif %}
+            <span id='infos'>Pour plus d'inforamtion</span><br/>
+            <span id='connexion'>Connexion</span>
         </div>
 
         <footer>
